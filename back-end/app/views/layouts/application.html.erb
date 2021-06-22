@@ -5,6 +5,12 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -17,16 +23,26 @@
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
 
-    <p class="navbar-text float-right">
-      <% if user_signed_in? %>
-        Logged in as <strong><%= current_user.email %></strong>.
-        <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-      <% else %>
-        <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-        <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-      <% end %>
-    </p>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">
+        <span class="d-none d-lg-block"><img class="img-fluid img-logo rounded-circle mx-auto mb-2" src="https://media-exp1.licdn.com/dms/image/C4E0BAQGUfvvPaWXmgg/company-logo_200_200/0/1606836367814?e=2159024400&v=beta&t=vrDPgYTtnEWLC_ay6j2AqqmZNbGqLPTz-_y_26r9cCM" alt="..." /></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav">
+          <% if user_signed_in? %>
+            <li class="nav-item">Logged in as <strong class="text-primary"><%= current_user.username %></strong></li><br>
+            <li class="nav-item"><%= link_to 'New Post', new_post_path, class:'btn btn-warning col-md-6' %></li><br>
+            <li class="nav-item"><%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-light col-md-6' %></strong></li><br>
+            <li class="nav-item"><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'btn btn-light col-md-6'  %></strong></li>
+          <% else %>
+            <li class="nav-item"><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></strong></li>
+            <li class="nav-item"><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></strong></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+
     <%= yield %>
   </body>
 </html>
