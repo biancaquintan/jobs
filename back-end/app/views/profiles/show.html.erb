@@ -1,9 +1,4 @@
-<body id="page-top">
-  <%= form_tag(profiles_path, :method => "get") do %>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search" %>
-  <% end %>
-
+<body>
   <div class="container-fluid p-0">
     <section class="resume-section" >
       <div class="resume-section-content">
@@ -19,7 +14,7 @@
     <hr class="m-0" />
     <section class="resume-section" id="posts">
       <div class="resume-section-content">
-        <h2 class="mb-5">POSTS</h2>
+        <h2 class="mb-5">POSTS by @<span class="text-primary"><%= @profile.username %></span></h2>
         <% @profile.posts.each do |post| %>   
           <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
             <div class="flex-grow-1">

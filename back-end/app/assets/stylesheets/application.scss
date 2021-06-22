@@ -628,6 +628,11 @@ progress {
   margin-left: auto;
 }
 
+a.navbar-brand:hover{
+  background-color: #55c9be;
+  border-radius: 10%;
+}
+
 @media (min-width: 576px) {
   .container-sm, .container {
     max-width: 540px;
@@ -10891,6 +10896,7 @@ p.lead {
 li.nav-item {
   color: #fff; 
   font-size: .9rem;
+  margin-bottom: 5%;
 }
 
 .subheading {

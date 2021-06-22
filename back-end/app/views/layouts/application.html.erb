@@ -31,9 +31,19 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav">
           <% if user_signed_in? %>
-            <li class="nav-item">Logged in as <strong class="text-primary"><%= current_user.username %></strong></li><br>
-            <li class="nav-item"><%= link_to 'New Post', new_post_path, class:'btn btn-warning col-md-6' %></li><br>
-            <li class="nav-item"><%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-light col-md-6' %></strong></li><br>
+            <li class="nav-item">Logged in as <strong class="text-primary"><%= current_user.username %></strong></li>
+            <li class="nav-item">
+              <div class="container-fluid">
+                <div class="input-group">
+                  <span class="input-group-text" id="basic-addon1">@</span>
+                  <%= form_tag(profiles_path, :method => "get") do %>
+                    <%= text_field_tag :search, params[:search], placeholder: 'Search profiles', class:'form-control' %>
+                  <% end %>
+                </div>
+              </div>
+            </li><hr><br>
+            <li class="nav-item"><%= link_to 'New Post', new_post_path, class:'btn btn-warning col-md-6' %></li>
+            <li class="nav-item"><%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-light col-md-6' %></strong></li>
             <li class="nav-item"><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'btn btn-light col-md-6'  %></strong></li>
           <% else %>
             <li class="nav-item"><%= link_to "Login", new_user_session_path, :class => 'btn btn-light col-md-6'  %></strong></li><br>
@@ -43,7 +53,7 @@
         </ul>
       </div>
     </nav>
-
+    
     <%= yield %>
   </body>
 </html>
