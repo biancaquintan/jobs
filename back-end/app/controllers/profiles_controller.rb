@@ -2,7 +2,11 @@ class ProfilesController < ApplicationController
     before_action :set_profile, only: %i[ show edit update destroy ]
 
     def index
-      @profiles = User.all
+      if params[:search]
+        @profiles = User.search(params[:search])
+      else
+        @profiles = User.all
+      end
     end
   
     def show
@@ -18,5 +22,9 @@ class ProfilesController < ApplicationController
       # Only allow a list of trusted parameters through.
       def profile_params
         params.require(:profile).permit(:user_id)
+      end
+
+      def filtering_params(params)
+        params.slice(:username)
       end
 end

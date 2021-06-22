@@ -1,6 +1,11 @@
 
 <td>OWNER: <%= @profile.email %></td>
 
+<%= form_tag(profiles_path, :method => "get") do %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
 <h1>Posts</h1>
 
 <table>
