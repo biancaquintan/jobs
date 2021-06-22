@@ -16,6 +16,7 @@ class ProfilesController < ApplicationController
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_profile
+        params[:id] = current_user.id if current_user
         @profile = User.find(params[:id])
       end
   

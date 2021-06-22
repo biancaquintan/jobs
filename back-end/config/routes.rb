@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'posts#index'
+  root 'profiles#show', to: 'profiles#show'
   resources :posts
   resources :profiles
   devise_for :users
